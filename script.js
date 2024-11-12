@@ -3,22 +3,14 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
             return title.replace(/^(a |an |the )/i, '').trim();
         }
 
+       const sortedBands=bands.sort((a,b)=> removeArticles(a).localeCompare(removeArticles(b)));
+ const ulElement=document.getElementById('band');
+  sortedBands.forEach(band=>{
+	  const li = document.createElement('li');
+  li.textContent=band;
+  ulElement.appendChild(li);
+  });
+
+
+        
        
-        function sortArticles() {
-            const list = document.getElementById("band");
-            let items = Array.from(list.getElementsByTagName("li"));
-
-           
-            items.sort((a, b) => {
-                let titleA = removeArticles(a.textContent.toLowerCase());
-                let titleB = removeArticles(b.textContent.toLowerCase());
-                return titleA.localeCompare(titleB);
-            });
-
-            
-            list.innerHTML = "";
-            items.forEach(item => list.appendChild(item));
-        }
-
-        // Call sortArticles on page load
-        window.onload = sortArticles;
