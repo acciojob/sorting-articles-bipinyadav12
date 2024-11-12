@@ -3,13 +3,15 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
             return title.replace(/^(a |an |the )/i, '').trim();
         }
 
-       const sortedBands=bands.sort((a,b)=> removeArticles(a).localeCompare(removeArticles(b)));
- const ulElement=document.getElementById('band');
-  sortedBands.forEach(band=>{
-	  const li = document.createElement('li');
-  li.textContent=band;
-  ulElement.appendChild(li);
-  });
+       cconst ulElement = document.getElementById('band');
+        const itemsArray = Array.from(ulElement.getElementsByTagName('li'));
+
+        // Sort the items while ignoring articles
+        itemsArray.sort((a, b) => stripArticle(a.textContent).localeCompare(stripArticle(b.textContent)));
+
+        // Clear the original list and append the sorted items
+        ulElement.innerHTML = '';
+        itemsArray.forEach(item => ulElement.appendChild(item));
 
 
         
