@@ -3,7 +3,7 @@ const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'N
             return title.replace(/^(a |an |the )/i, '').trim();
         }
 
-       cconst ulElement = document.getElementById('band');
+       const ulElement = document.getElementById('band');
         const itemsArray = Array.from(ulElement.getElementsByTagName('li'));
 
         // Sort the items while ignoring articles
