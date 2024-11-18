@@ -1,16 +1,19 @@
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
- function stripArticle(title) {
+ const  articles = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+        function removeArticles(title) {
             return title.replace(/^(a |an |the )/i, '').trim();
-       
-       const ulElement = document.getElementById('bands');
-        const itemsArray = Array.from(ulElement.getElementsByTagName('li'));
+        }
 
-        itemsArray.sort((a, b) => stripArticle(a.textContent).localeCompare(stripArticle(b.textContent)));
+        // Sorting the articles ignoring "a", "an", "the"
+        const sortedArticles = articles.sort((a, b) => {
+            const titleA = removeArticles(a).toLowerCase();
+            const titleB = removeArticles(b).toLowerCase();
+            return titleA.localeCompare(titleB);
+        });
 
-     alert(itemsArray);
-        ulElement.innerHTML = '';
-        itemsArray.forEach(item => ulElement.appendChild(item));
-
-
-        
-    
+        // Displaying the sorted articles in the <ul> element
+        const ul = document.getElementById("bands");
+        sortedArticles.forEach(article => {
+            const li = document.createElement("li");
+            li.textContent = article;
+            ul.appendChild(li);
+        });
